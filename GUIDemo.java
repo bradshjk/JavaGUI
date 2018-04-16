@@ -15,6 +15,7 @@ public class GUIDemo extends JFrame
     private JPanel panel;
     private JButton biggerButton;
     private JButton smallerButton;
+    private JButton randomButton;
 
     /**
      * Set up the application.
@@ -28,11 +29,14 @@ public class GUIDemo extends JFrame
         panel = new JPanel();
         biggerButton = new JButton("BIGGER");
         smallerButton = new JButton("SMALLER");
+        randomButton = new JButton("RANDOM");
         biggerButton.addActionListener(new ButtonHandler());
         smallerButton.addActionListener(new ButtonHandler());
+        randomButton.addActionListener(new RandomHandler());
         add(panel);
         panel.add(biggerButton);
         panel.add(smallerButton);
+        panel.add(randomButton);
         setVisible(true);
     }
 
@@ -57,6 +61,21 @@ public class GUIDemo extends JFrame
             else
             {
                 setSize(size.width - 10, size.height - 10);
+            }
+
+        }
+    }
+
+    private class RandomHandler implements ActionListener
+    {
+
+        public void actionPerformed(ActionEvent e)
+        {
+            Dimension size = getSize();
+
+            if (e.getSource().equals(randomButton))
+            {
+                setSize((int)(Math.random() * size.width),(int) (Math.random() * size.height));
             }
 
         }
